@@ -1,7 +1,7 @@
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
@@ -13,12 +13,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { useState } from 'react';
+import { Container } from '@mui/material';
 
 const drawerWidth = 240;
-const navItems = ['Home', 'Products', 'Contact'];
-
-
+const navItems = ['Home', 'About', 'Contact'];
 const Navbar = (props) => {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -30,7 +28,7 @@ const Navbar = (props) => {
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
             <Typography variant="h6" sx={{ my: 2 }}>
-                MUI App
+                MUI
             </Typography>
             <Divider />
             <List>
@@ -49,34 +47,40 @@ const Navbar = (props) => {
 
     return (
         <Box sx={{ display: 'flex' }}>
-            <CssBaseline />
-            <AppBar component="nav">
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                    >
-                        MUI App
-                    </Typography>
-                    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                        {navItems.map((item) => (
-                            <Button key={item} sx={{ color: '#fff' }}>
-                                {item}
-                            </Button>
-                        ))}
-                    </Box>
-                </Toolbar>
+            <AppBar sx={{
+                // backgroundColor: 'transparent',
+                // boxShadow: 'none',
+            }} component="nav">
+                <Container>
+                    <Toolbar>
+                        <IconButton
+                            color="primary.main"
+                            aria-label="open drawer"
+                            edge="start"
+                            onClick={handleDrawerToggle}
+                            sx={{ mr: 2, display: { sm: 'none' } }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
+                            <img
+                                src='https://v4.material-ui.com/static/logo.png'
+                                alt='main-logo'
+                                style={{ height: '50px', width: '50px' }}
+                            />
+                        </Box>
+
+                        <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                            {navItems.map((item) => (
+                                <Button variant='text' key={item} sx={{ color: 'white' }}>
+                                    {item}
+                                </Button>
+                            ))}
+                        </Box>
+                    </Toolbar>
+                </Container>
             </AppBar>
+
             <Box component="nav">
                 <Drawer
                     container={container}
